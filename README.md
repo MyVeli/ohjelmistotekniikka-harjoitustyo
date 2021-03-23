@@ -1,6 +1,6 @@
 # Velin ohjelmistotekniikan repository
 
-Tänne tulee
-* harjoitustyö
-* viikkoharkat
-__muotoilu__ _testi_
+### Tehtävät
+#### Viikko 1
+* [gitlog.txt](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/laskarit/viikko1/gitlog.txt)
+* [komentorivi.txt](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/laskarit/viikko1/komentorivi.txt)
