@@ -1,0 +1,98 @@
+commit 1aeb23523a27e39105c812a8bbe2b54ed35bba6c (HEAD -> master)
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:18:46 2021 +0200
+
+    deteled file1, renamed file2
+
+commit c751e3692610e8d3234996d3441e959a0a49e784
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:12:04 2021 +0200
+
+    lisätty folder tiedostoja ja tiedostot file1,file2,file3
+
+commit d7cb3a909ae93d6262783ed6beebda7d708c0260
+Author: MyVeli <veli.myllyla@hotmail.com>
+:...skipping...
+commit 1aeb23523a27e39105c812a8bbe2b54ed35bba6c (HEAD -> master)
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:18:46 2021 +0200
+
+    deteled file1, renamed file2
+
+commit c751e3692610e8d3234996d3441e959a0a49e784
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:12:04 2021 +0200
+
+    lisätty folder tiedostoja ja tiedostot file1,file2,file3
+
+commit d7cb3a909ae93d6262783ed6beebda7d708c0260
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:02:57 2021 +0200
+
+    muutoksia
+
+commit ba8ad72b43f9657eb00cde8761a2a15d008eab40
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:00:32 2021 +0200
+
+    uudelleen nimetty tiedosto.txt -> eka.txt
+:...skipping...
+commit 1aeb23523a27e39105c812a8bbe2b54ed35bba6c (HEAD -> master)
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:18:46 2021 +0200
+
+    deteled file1, renamed file2
+
+commit c751e3692610e8d3234996d3441e959a0a49e784
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:12:04 2021 +0200
+
+    lisätty folder tiedostoja ja tiedostot file1,file2,file3    
+
+commit d7cb3a909ae93d6262783ed6beebda7d708c0260
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:02:57 2021 +0200
+
+    muutoksia
+
+commit ba8ad72b43f9657eb00cde8761a2a15d008eab40
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 22:00:32 2021 +0200
+
+    uudelleen nimetty tiedosto.txt -> eka.txt
+
+commit fd27428ed05a5dba79d647d22acfb9ef6f7d5e79
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 21:59:36 2021 +0200
+
+    toinen tiedosto poistettu.
+
+commit 2b6de70880403e197fe4dd3c313913a2b3d3e783
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 21:42:01 2021 +0200
+
+    muokattu tiedosto.txt tekstiä
+
+commit 85a8e6f1b56189688bc88ef73086266c20de0f60
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 21:40:01 2021 +0200
+
+    lisätty tekstiä tiedostoon tiedosto.txt
+
+commit 0a016e3f20b7e54d73748c0a42e632ce0afa7c2f
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 21:33:59 2021 +0200
+
+    kolmas tiedosto ja stuff kansio lisätty.
+
+commit 7516689189c94fb8e76b8ea2b2f03ac0fbf0727b
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 21:23:52 2021 +0200
+
+    muutos ja lisäys
+
+commit bea7366c8a27f34a8508d1426fc76b8bd5479198
+Author: MyVeli <veli.myllyla@hotmail.com>
+Date:   Tue Mar 23 21:20:37 2021 +0200
+
+    tiedosto.txt luotu
