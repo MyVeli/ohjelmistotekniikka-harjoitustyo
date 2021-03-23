@@ -1,5 +1,6 @@
-#Velin ohjelmistotekniikan repository
+# Velin ohjelmistotekniikan repository
+
 Tänne tulee
-*harjoitustyö
-*viikkoharkat
+* harjoitustyö
+* viikkoharkat
 __muotoilu__ _testi_
