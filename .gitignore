@@ -6,3 +6,5 @@ src/__pycache__
 src/configuration.txt
 src/login
 src/tests/__pycache__
+htmlcov
+.coverage
