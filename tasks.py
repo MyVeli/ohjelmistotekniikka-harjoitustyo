@@ -5,6 +5,10 @@ def start(ctx):
     ctx.run("python src/index.py")
 
 @task
+def test(ctx):
+    ctx("")
+
+@task
 def coverage(ctx):
     ctx.run("coverage run --branch -m pytest")
 
