@@ -8,3 +8,4 @@ src/login
 src/tests/__pycache__
 htmlcov
 .coverage
+test.db

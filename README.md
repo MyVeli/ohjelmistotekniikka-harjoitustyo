@@ -1,12 +1,15 @@
 # Velin ohjelmistotekniikan repository
 
-### Harjoitustyö
+## Dokumentaatio
 * [määrittely dokumentti](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/harjoitustyo/dokumentaatio/maarittely.md)
-
-### Työaikakirjanpito
 * [työaikakirjanpito](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/harjoitustyo/tyoaikakirjanpito/tyoaika.md)
 
-### Tehtävät
-#### Viikko 1
-* [gitlog.txt](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/laskarit/viikko1/gitlog.txt)
-* [komentorivi.txt](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/laskarit/viikko1/komentorivi.txt)
+## Asennus
+1. Asenna riippuvuudet komennolla "poetry install"
+2. Käynnistä sovellus komennolla "poetry invoke start"
+
+## Komentorivitoiminnot
+* Ohjelman voi käynnistää komennolla "poetry run invoke start"
+* Testit voi suorittaa komennolla "poetry run invoke test"
+* Testikattavuusraportin saa komennolla "poetry run invoke coverage-report" ja raportti muodostuu kansioon htmlcov.
+
