@@ -7,7 +7,6 @@ authors = ["MyVeli <veli.myllyla@hotmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 invoke = "^1.5.0"
-matplotlib = "^3.4.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.3"
