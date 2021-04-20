@@ -3,8 +3,8 @@
 Projektissa tehtävä sovellus toimii erilaisten investointien kannattavuuslaskentaa ja laskelmien visualisointia varten. Tällä hetkellä sovelluksesta on tehty lähinnä rekisteröinti ja sisäänkirjautuminen, sekä tietokannan luominen.
 
 ## Dokumentaatio
-* [määrittely dokumentti](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/harjoitustyo/dokumentaatio/maarittely.md)
-* [työaikakirjanpito](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/harjoitustyo/tyoaikakirjanpito/tyoaika.md)
+* [määrittely dokumentti](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/dokumentaatio/maarittely.md)
+* [työaikakirjanpito](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/tyoaikakirjanpito/tyoaika.md)
 
 ## Asennus
 1. Riippuvuudet asennetaan komennolla "poetry install"
