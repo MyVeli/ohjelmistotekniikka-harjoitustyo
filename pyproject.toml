@@ -13,6 +13,7 @@ pytest = "^6.2.3"
 coverage = "^5.5"
 importlib-metadata = "^3.10.1"
 typing-extensions = "^3.7.4"
+pylint = "^2.7.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

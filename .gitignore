@@ -9,3 +9,7 @@ src/tests/__pycache__
 htmlcov
 .coverage
 test.db
+src\user_mgmt\__pycache__
+src\ui\__pycache__
+src/user_mgmt/__pycache__/
+src/ui/__pycache__/

@@ -1,24 +1,16 @@
-import sys, os
-#dir = os.path.dirname(__file__)
-import create_db
-import login
-#import sqlite3
-import register
+"""Main program which creates a db and starts UI."""
+from tkinter import Tk
+import db_mgmt
+from ui.ui import UI
 
 def main():
+    """First creates db or gets db connection, then starts UI."""
     dbname = "investmentdb.db"
-    create_db.CreateDB(dbname)
-    user = ""
-    action = ""
-    while (action != "l" and action != "r") or user == "":
-        action = input("press l to login with existing account, r to register a new one or x to exit: ")
-        if action == "l":
-            user = login.Login(dbname)
-        elif action == "r":
-            register.Register(dbname)
-            user = login.Login(dbname)
-        elif action == "x":
-            return True
-    print(f"Welcome! You are now logged in as {user}")
-    
+    db_mgmt.create_db(dbname)
+    window = Tk()
+    window.title("Veli's investment program")
+    ui_window = UI(window)
+    ui_window.start()
+    window.mainloop()
+
 main()
