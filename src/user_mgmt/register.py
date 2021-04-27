@@ -6,13 +6,12 @@ def register_user(username,password,db_name):
     try:
         if db_connection.execute("SELECT password FROM Users WHERE Username = ?",
                     [username]).fetchone() is not None:
-            raise UserNameError(f"username: {username} is already in use. Please select another one.")
+            raise UserNameError(f"username: {username} is already in use."+
+            " Please select another one.")
     except ConnectionError:
         raise ConnectionError("Error with database connection")
-        return
     if len(password) < 5:
         raise PasswordError("Password needs to be 5 characters.")
-        return
     password = hashlib.sha256(str(password).encode('utf-8')).hexdigest()
     db_connection.execute("INSERT INTO Users (username, password) VALUES (?, ?);"
                         ,[username, password])

@@ -1,10 +1,10 @@
 """UI component used for registration and logging in."""
 from tkinter import ttk
-from user_mgmt.login import user_login as login, CredentialError as CredentialError
+from user_mgmt.login import user_login as login, CredentialError
 from user_mgmt.register import register_user as register, UserNameError, PasswordError
 
 class LoginUi:
-    def __init__(self,root,next_ui):
+    def __init__(self,root,main_ui):
         self._root = root
         self._frame = None
         self._username_entry = None
@@ -13,7 +13,7 @@ class LoginUi:
         self._password_label = None
         self.message = None
         self._error_label = None
-        self.next_ui = next_ui
+        self.main_ui = main_ui
         self.initialise_view()
 
     def initialise_view(self):
@@ -47,8 +47,10 @@ class LoginUi:
 
     def handle_login(self):
         try:
-            username = login(self._username_entry.get(),self._password_entry.get(),"investmentdb.db")
-            self.next_ui(username)
+            username = login(self._username_entry.get(),\
+                self._password_entry.get(),"investmentdb.db")
+            self.main_ui.set_user(username)
+            self.main_ui.show_menu_view()
         except CredentialError:
             self.show_error_message("Wrong username or password.")
         except ConnectionError:
@@ -56,8 +58,10 @@ class LoginUi:
 
     def handle_registration(self):
         try:
-            username = register(self._username_entry.get(),self._password_entry.get(),"investmentdb.db")
-            self.next_ui(username)
+            username = register(self._username_entry.get(),\
+                self._password_entry.get(),"investmentdb.db")
+            self.main_ui.set_user(username)
+            self.main_ui.show_menu_view()
         except UserNameError:
             self.show_error_message("Username already in use")
         except PasswordError:
