@@ -15,14 +15,14 @@ Sovelluksessa on vain yksi käyttäjärooli. Myöhemmin sovellukseen saatetaan l
 * Kirjautumisen yhteydessä järjestelmä ilmoittaa mikäli tunnus puuttuu
 
 ### Kirjautumisen jälkeen
-* Käyttäjä näkee listan tehdyistä suunnitelmista
-* Käyttäjä voi luoda uuden suunnitelman
+* tehty v5: Käyttäjä näkee listan tehdyistä suunnitelmista
+* tehty v5: Käyttäjä voi luoda uuden suunnitelman
 * Käyttäjä voi poistaa suunnitelman
-* Käyttäjä voi ladata suunnitelman
+* tehty v5: Käyttäjä voi ladata suunnitelman
 
 ### Suunnitelman luominen
-* Käyttäjä valitsee suunnitelmalle uniikin nimen ja luo suunnitelman
-* Suunnitelman luomisen jälkeen käyttäjä siirtyy tyhjään suunnitelmaan
+* tehty v5: Käyttäjä valitsee suunnitelmalle uniikin nimen ja luo suunnitelman
+* tehty v5: Suunnitelman luomisen jälkeen käyttäjä siirtyy tyhjään suunnitelmaan
 
 ### Suunnitelman muokkaaminen
 * Käyttäjä voi lisätä, poistaa tai muokata suunnitelman kuluja ja tuloja
