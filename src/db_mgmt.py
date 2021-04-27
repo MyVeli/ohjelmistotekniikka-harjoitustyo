@@ -9,10 +9,9 @@ def create_db(db_name):
     "(username TEXT PRIMARY KEY, password TEXT);")
     db_connection.execute("CREATE TABLE IF NOT EXISTS Plan "+
     "(plan_id INTEGER PRIMARY KEY, username TEXT REFERENCES Users, name TEXT, description TEXT);")
-    db_connection.execute("CREATE TABLE IF NOT EXISTS Cost (cost_id TEXT PRIMARY KEY,"+
+    db_connection.execute("CREATE TABLE IF NOT EXISTS Cost (cost_id INTEGER PRIMARY KEY,"+
     " plan_id REFERENCES Plan, description TEXT, amount REAL, year INTEGER);")
-    db_connection.execute("CREATE TABLE IF NOT EXISTS Revenue "+
-    "(cost_id TEXT PRIMARY KEY, plan_id REFERENCES Plan, description TEXT,"+
-    " amount REAL, year INTEGER);")
+    db_connection.execute("CREATE TABLE IF NOT EXISTS Revenue (cost_id INTEGER PRIMARY KEY,"+
+    " plan_id REFERENCES Plan, description TEXT, amount REAL, year INTEGER);")
     db_connection.commit()
     return db_connection

@@ -1,4 +1,4 @@
-from tkinter import ttk,Listbox,END
+from tkinter import ttk,Listbox,END,ACTIVE
 from investment_plan_logic.plan_mgmt import get_plans_by_user
 
 class MainMenu:
@@ -71,7 +71,7 @@ class LoadMenu:
         self._message_label.grid()
 
     def handle_load_plan(self):
-        self._main_ui.show_menu_view()
+        self._main_ui.show_investment_view(self._list.get(ACTIVE))
 
     def get_plans(self):
         return get_plans_by_user(self._main_ui.get_user(),self._main_ui.get_db())

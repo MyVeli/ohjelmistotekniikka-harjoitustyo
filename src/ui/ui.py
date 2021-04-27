@@ -1,6 +1,7 @@
 from ui.login_ui import LoginUi as login_ui
 from ui.menu_ui import MainMenu, LoadMenu
 from ui.new_plan_ui import NewPlan
+from ui.investment_ui import InvestmentUi
 
 class UI:
     def __init__(self,root,db):
@@ -44,4 +45,9 @@ class UI:
     def show_create_new_plan(self):
         self.destroy_view()
         self._current_view = NewPlan(self._root,self)
+        self._current_view.pack()
+
+    def show_investment_view(self,plan_name):
+        self.destroy_view()
+        self._current_view = InvestmentUi(self._root,self,plan_name)
         self._current_view.pack()

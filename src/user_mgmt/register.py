@@ -7,7 +7,7 @@ def register_user(username,password,db_name):
         if db_connection.execute("SELECT password FROM Users WHERE Username = ?",
                     [username]).fetchone() is not None:
             raise UserNameError(f"username: {username} is already in use."+
-            " Please select another one.")
+                                " Please select another one.")
     except ConnectionError:
         raise ConnectionError("Error with database connection")
     if len(password) < 5:

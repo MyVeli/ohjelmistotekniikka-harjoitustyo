@@ -43,4 +43,4 @@ class NewPlan:
     def handle_new_plan(self):
         create_plan(self._main_ui.get_user(),self._main_ui.get_db(),\
             self._name_entry.get(),self._description_entry.get())
-        self._main_ui.show_menu_view()
+        self._main_ui.show_investment_view(self._name_entry.get())
