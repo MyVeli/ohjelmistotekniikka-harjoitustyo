@@ -2,6 +2,9 @@
 
 Projektissa tehtävä sovellus toimii erilaisten investointien kannattavuuslaskentaa ja laskelmien visualisointia varten. Tällä hetkellä sovelluksesta on tehty lähinnä rekisteröinti ja sisäänkirjautuminen, sekä tietokannan luominen.
 
+## Release:
+[Viikko 5 release](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/releases/tag/viikko5)
+
 ## Dokumentaatio
 * [määrittely dokumentti](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/dokumentaatio/maarittely.md)
 * [työaikakirjanpito](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/tyoaikakirjanpito/tyoaika.md)
