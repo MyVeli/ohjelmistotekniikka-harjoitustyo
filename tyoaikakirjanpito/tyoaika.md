@@ -14,4 +14,10 @@
 * koodin refaktorointi käyttöliittymiä varten 2h
 * testien lisääminen 1h
 
-### Yhteensä: 20h
+### Viikko 5:
+* Suunnitelmien luominen 2h
+* Suunnitelmien lataaminen 2h
+* Päävalikko 2h
+* Päänäkymän valmistelu 1h
+
+### Yhteensä: 27h
