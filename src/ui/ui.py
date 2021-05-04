@@ -1,3 +1,5 @@
+"""Used for managing the UI in the system. Changes between different views and holds root.
+"""
 from ui.login_ui import LoginUi as login_ui
 from ui.menu_ui import MainMenu, LoadMenu
 from ui.new_plan_ui import NewPlan
@@ -10,15 +12,6 @@ class UI:
         self._current_view = None
         self.session = SessionInfo()
         self.session.set_db_connection(db)
-
-    def get_user(self):
-        return self.session.get_username()
-
-    def set_user(self,username):
-        self.session.set_username(username)
-
-    def get_db(self):
-        return self.session.get_db_connection()
 
     def start(self):
         self.show_login_view()

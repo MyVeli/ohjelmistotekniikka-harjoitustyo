@@ -20,4 +20,8 @@
 * Päävalikko 2h
 * Päänäkymän valmistelu 1h
 
-### Yhteensä: 27h
+### Viikko 6:
+* investointikäyttöliittymä ja taustapalvelut 6h
+* testit, refaktorointi, virhetarkastelun lisääminen 2h
+
+### Yhteensä: 35h

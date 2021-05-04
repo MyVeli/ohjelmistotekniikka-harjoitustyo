@@ -2,6 +2,8 @@ from tkinter import ttk
 from investment_plan_logic.plan_mgmt import create_plan
 
 class NewPlan:
+    """UI for creating a new plan to the system.
+    """
     def __init__(self,root,ui):
         self._root = root
         self._main_ui = ui
@@ -14,6 +16,8 @@ class NewPlan:
         self.initialise_view()
 
     def initialise_view(self):
+        """Used by constructor to initialise view.
+        """
         self._frame = ttk.Frame(master=self._root)
         self._frame.grid_columnconfigure(index=0,pad=50, weight=1, minsize=500)
         self.show_message("Welcome. There is still some work to be done!")
@@ -30,7 +34,15 @@ class NewPlan:
         add_plan_button = ttk.Button(master=self._frame,text="Create",command=self.handle_new_plan)
         add_plan_button.grid(padx=6, pady=4)
 
+        menu_button = ttk.Button(master=self._frame,text="Back",command=self._main_ui.show_menu_view)
+        menu_button.grid(padx=6, pady=4)
+
     def show_message(self,message):
+        """Shows a message in the view
+
+        Args:
+            message (string): message to show
+        """
         self._message_label = ttk.Label(master=self._frame, text = message)
         self._message_label.grid()
 
@@ -41,6 +53,7 @@ class NewPlan:
         self._frame.pack()
 
     def handle_new_plan(self):
-        create_plan(self._main_ui.get_user(),self._main_ui.get_db(),\
-            self._name_entry.get(),self._description_entry.get())
+        create_plan(self._main_ui.session.get_username(),\
+            self._main_ui.session.get_db_connection(), self._name_entry.get(),\
+            self._description_entry.get())
         self._main_ui.show_investment_view(self._name_entry.get())

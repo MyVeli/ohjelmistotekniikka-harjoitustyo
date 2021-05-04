@@ -1,7 +1,12 @@
+"""Holds InvestmentUi class, which is used for the main view of the system.
+"""
 from tkinter import Tk,ttk, END
 from investment_plan_logic.plan_mgmt import get_costs, get_revenue, add_cost, add_revenue, InputError
 
 class InvestmentUi:
+    """Class for managing the main UI of the system, which is for investment plan management.
+    Requires root, main UI and plan name as parameters for init.
+    """
     def __init__(self,root,main_ui,plan_name):
         self._root = root
         self._main_ui = main_ui
@@ -18,6 +23,8 @@ class InvestmentUi:
         self.initialise_view()
 
     def initialise_view(self):
+        """Initialises the view. Used by class constructor.
+        """
         self._frame = ttk.Frame(master=self._root)
         #self._frame.grid_columnconfigure(index=0,pad=10, minsize=50)
         self.show_message(f"Welcome to plan {self.name}. This view is a work in progress!")      
@@ -36,6 +43,8 @@ class InvestmentUi:
         self.update_revenue_table()
     
     def update_cost_table(self):
+        """updates the values in the cost table.
+        """
         cols = ('Description','Amount','Year')
         self._cost_table = ttk.Treeview(master=self._frame, columns=cols, show='headings')
         for col in cols:
@@ -49,6 +58,8 @@ class InvestmentUi:
         self._cost_table.grid(row=3,column=1)
 
     def update_revenue_table(self):
+        """Updates the values on the revenue table
+        """
         cols = ('Description','Amount','Year')
         self._revenue_table = ttk.Treeview(master=self._frame, columns=cols, show='headings')
         total = 0
@@ -62,12 +73,19 @@ class InvestmentUi:
         self._revenue_table.grid(row=4,column=1)
 
     def load_plan(self):
+        """Loads costs and revenue from the DB.
+        """
         self.costs = get_costs(self._main_ui.session.get_username(),
             self._main_ui.session.get_db_connection(),self.name)
         self.revenue = get_revenue(self._main_ui.session.get_username(),
             self._main_ui.session.get_db_connection(),self.name)
 
     def show_message(self,message):
+        """Shows a message on the top of the main view.
+
+        Args:
+            message (string): message string to be shown.
+        """
         self._message_label = ttk.Label(master=self._frame, text = message)
         self._message_label.grid(row=0,column=1)
 
@@ -75,9 +93,13 @@ class InvestmentUi:
         self._frame.pack()
 
     def handle_to_main_menu(self):
+        """Changes UI back to main menu.
+        """
         self._main_ui.show_menu_view()
 
     def handle_add_cost(self):
+        """Creates a popup for adding new costs.
+        """
         self.cost_popup = Tk()
         self.cost_popup.title("Costs")
         i = 0
@@ -116,16 +138,22 @@ class InvestmentUi:
         self.cost_popup.mainloop()
 
     def exit_cost_popup(self):
+        """used for exiting cost popup and loading new costs to main view.
+        """
         self.cost_popup.destroy()
         self.load_plan()
         self.update_cost_table()
 
     def exit_revenue_popup(self):
+        """Used for exiting revenue popup and loads new revenue to main view.
+        """
         self.revenue_popup.destroy()
         self.load_plan()
         self.update_revenue_table()
 
     def handle_add_revenue(self):
+        """Creates a popup for adding new revenue items to the plan.
+        """
         self.revenue_popup = Tk()
         self.revenue_popup.title("Revenue sources")
         i = 0
@@ -164,6 +192,8 @@ class InvestmentUi:
         self.revenue_popup.mainloop()
 
     def handle_add_costline(self):
+        """Used for adding a single cost item to DB. Takes the values from the popup's grid
+        """
         index = self.cost_popup.grid_size()[1]-3
         desc = self.cost_popup.grid_slaves(row=index,column=0)[0].get()
         amount = self.cost_popup.grid_slaves(row=index,column=1)[0].get()
@@ -178,7 +208,7 @@ class InvestmentUi:
         self.handle_add_cost()
 
     def handle_add_revenueline(self):
-        """Adds one more line to db"""
+        """Used for adding a single revenue item to DB. Takes the values from the popup's grid"""
         index = self.revenue_popup.grid_size()[1]-3
         desc = self.revenue_popup.grid_slaves(row=index,column=0)[0].get()
         amount = self.revenue_popup.grid_slaves(row=index,column=1)[0].get()
@@ -193,4 +223,6 @@ class InvestmentUi:
         self.handle_add_revenue()
 
     def destroy(self):
+        """destroys the frame holding this UI
+        """
         self._frame.destroy()
