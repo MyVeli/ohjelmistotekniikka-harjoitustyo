@@ -25,10 +25,10 @@ Sovelluksessa on vain yksi käyttäjärooli. Myöhemmin sovellukseen saatetaan l
 * tehty v5: Suunnitelman luomisen jälkeen käyttäjä siirtyy tyhjään suunnitelmaan
 
 ### Suunnitelman muokkaaminen
-* Käyttäjä voi lisätä, poistaa tai muokata suunnitelman kuluja ja tuloja
-* Kuluja ja liikevaihtoa voi olla erilaisista nimetyistä lähteistä ja järjestelmä tallentaa ne erikseen
-* Järjestelmä piirtää liikevaihdon, kulujen ja kannattavuuden kehittymisestä graafin ja näyttää arvot myös numeerisina
-* Suunnitelman voi tallentaa ja siirtyä takaisin valikkoon, jossa on lista suunnitelmista
+* osittain tehty v6: Käyttäjä voi lisätä, poistaa tai muokata suunnitelman kuluja ja tuloja
+* osittain tehty v6: Kuluja ja liikevaihtoa voi olla erilaisista nimetyistä lähteistä ja järjestelmä tallentaa ne erikseen
+* osittain tehty v6: Järjestelmä piirtää liikevaihdon, kulujen ja kannattavuuden kehittymisestä graafin ja näyttää arvot myös numeerisina
+* osittain tehty v6: Suunnitelman voi tallentaa ja siirtyä takaisin valikkoon, jossa on lista suunnitelmista
 
 ## Jatkokehitysideoita
 * Käyttäjätunnuksien jakaminen kahteen luokkaan, joista toisella on vain oikeus tutkia suunnitelmia
