@@ -14,3 +14,6 @@ src\ui\__pycache__
 src/user_mgmt/__pycache__/
 src/ui/__pycache__/
 src/investment_plan_logic/__pycache__
+dbcreatetest.db
+logintest.db
+investmentdb.db

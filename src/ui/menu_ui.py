@@ -2,18 +2,17 @@ from tkinter import ttk,Listbox,END,ACTIVE
 from investment_plan_logic.plan_mgmt import get_plans_by_user
 
 class MainMenu:
-    def __init__(self,root,user,ui):
+    def __init__(self,root,ui):
         self._root = root
         self._main_ui = ui
         self._frame = None
-        self.user = user
         self._message_label = None
         self.initialise_view()
 
     def initialise_view(self):
         self._frame = ttk.Frame(master=self._root)
         self._frame.grid_columnconfigure(index=0,pad=50, weight=1, minsize=500)
-        self.show_message(f"Welcome {self.user}. There is still some work to be done!")
+        self.show_message(f"Welcome {self._main_ui.session.get_username()}.")
         new_plan_button = ttk.Button(master=self._frame,text="New plan",
                             command=self.handle_new_plan)
         load_plan_button = ttk.Button(master=self._frame,text="Load plan",
@@ -51,7 +50,7 @@ class LoadMenu:
         self._frame = ttk.Frame(master=self._root)
         self._frame.grid_columnconfigure(index=0,pad=50, weight=1, minsize=500)
         self._list = Listbox(self._frame)
-        self.show_message("Welcome. There is still some work to be done!")
+        self.show_message("Welcome. Please choose a plan from the list")
         plans = self.get_plans()
         for i in plans:
             self._list.insert(END,i[0])
@@ -74,4 +73,5 @@ class LoadMenu:
         self._main_ui.show_investment_view(self._list.get(ACTIVE))
 
     def get_plans(self):
-        return get_plans_by_user(self._main_ui.get_user(),self._main_ui.get_db())
+        return get_plans_by_user(self._main_ui.session.get_username(),
+        self._main_ui.session.get_db_connection())

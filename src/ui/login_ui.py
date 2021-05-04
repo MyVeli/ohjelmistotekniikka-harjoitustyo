@@ -49,7 +49,7 @@ class LoginUi:
         try:
             username = login(self._username_entry.get(),\
                 self._password_entry.get(),"investmentdb.db")
-            self.main_ui.set_user(username)
+            self.main_ui.session.set_username(username)
             self.main_ui.show_menu_view()
         except CredentialError:
             self.show_error_message("Wrong username or password.")
@@ -60,7 +60,7 @@ class LoginUi:
         try:
             username = register(self._username_entry.get(),\
                 self._password_entry.get(),"investmentdb.db")
-            self.main_ui.set_user(username)
+            self.main_ui.session.set_username(username)
             self.main_ui.show_menu_view()
         except UserNameError:
             self.show_error_message("Username already in use")

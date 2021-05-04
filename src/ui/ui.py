@@ -2,22 +2,23 @@ from ui.login_ui import LoginUi as login_ui
 from ui.menu_ui import MainMenu, LoadMenu
 from ui.new_plan_ui import NewPlan
 from ui.investment_ui import InvestmentUi
+from user_mgmt.session_info import SessionInfo
 
 class UI:
     def __init__(self,root,db):
         self._root = root
         self._current_view = None
-        self.__user__ = None
-        self.__db__ = db
+        self.session = SessionInfo()
+        self.session.set_db_connection(db)
 
     def get_user(self):
-        return self.__user__
+        return self.session.get_username()
 
     def set_user(self,username):
-        self.__user__ = username
+        self.session.set_username(username)
 
     def get_db(self):
-        return self.__db__
+        return self.session.get_db_connection()
 
     def start(self):
         self.show_login_view()
@@ -34,7 +35,7 @@ class UI:
 
     def show_menu_view(self):
         self.destroy_view()
-        self._current_view = MainMenu(self._root, self.__user__,self)
+        self._current_view = MainMenu(self._root,self)
         self._current_view.pack()
 
     def show_load_view(self):
