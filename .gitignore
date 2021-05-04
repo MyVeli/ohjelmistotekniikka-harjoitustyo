@@ -17,3 +17,4 @@ src/investment_plan_logic/__pycache__
 dbcreatetest.db
 logintest.db
 investmentdb.db
+plantest.db

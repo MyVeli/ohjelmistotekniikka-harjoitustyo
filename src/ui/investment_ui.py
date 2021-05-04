@@ -1,5 +1,5 @@
 from tkinter import Tk,ttk, END
-from investment_plan_logic.plan_mgmt import get_costs, get_revenue, add_cost, add_revenue
+from investment_plan_logic.plan_mgmt import get_costs, get_revenue, add_cost, add_revenue, InputError
 
 class InvestmentUi:
     def __init__(self,root,main_ui,plan_name):
@@ -111,9 +111,19 @@ class InvestmentUi:
         add_button = ttk.Button(self.cost_popup, text="Add line", command=self.handle_add_costline)
         add_button.grid(padx=6, pady=4)
 
-        exit_button = ttk.Button(self.cost_popup, text="Back", command=self.cost_popup.destroy)
+        exit_button = ttk.Button(self.cost_popup, text="Back", command=self.exit_cost_popup)
         exit_button.grid(padx=6, pady=4)
         self.cost_popup.mainloop()
+
+    def exit_cost_popup(self):
+        self.cost_popup.destroy()
+        self.load_plan()
+        self.update_cost_table()
+
+    def exit_revenue_popup(self):
+        self.revenue_popup.destroy()
+        self.load_plan()
+        self.update_revenue_table()
 
     def handle_add_revenue(self):
         self.revenue_popup = Tk()
@@ -149,7 +159,7 @@ class InvestmentUi:
         add_button = ttk.Button(self.revenue_popup, text="Add line", command=self.handle_add_revenueline)
         add_button.grid(padx=6, pady=4)
 
-        exit_button = ttk.Button(self.revenue_popup, text="Back", command=self.revenue_popup.destroy)
+        exit_button = ttk.Button(self.revenue_popup, text="Back", command=self.exit_revenue_popup)
         exit_button.grid(padx=6, pady=4)
         self.revenue_popup.mainloop()
 
@@ -158,17 +168,26 @@ class InvestmentUi:
         desc = self.cost_popup.grid_slaves(row=index,column=0)[0].get()
         amount = self.cost_popup.grid_slaves(row=index,column=1)[0].get()
         year = self.cost_popup.grid_slaves(row=index,column=2)[0].get()
-        add_cost(self._main_ui.session.get_username(), self._main_ui.session.get_db_connection(), self.name,desc,amount,year)
+        try:
+            add_cost(self._main_ui.session.get_username(), self._main_ui.session.get_db_connection(),\
+                self.name,desc,amount,year)
+        except InputError as e:
+            print(e)
         self.load_plan()
         self.cost_popup.destroy()
         self.handle_add_cost()
 
     def handle_add_revenueline(self):
+        """Adds one more line to db"""
         index = self.revenue_popup.grid_size()[1]-3
         desc = self.revenue_popup.grid_slaves(row=index,column=0)[0].get()
         amount = self.revenue_popup.grid_slaves(row=index,column=1)[0].get()
         year = self.revenue_popup.grid_slaves(row=index,column=2)[0].get()
-        add_revenue(self._main_ui.session.get_username(), self._main_ui.session.get_db_connection(), self.name,desc,amount,year)
+        try:
+            add_revenue(self._main_ui.session.get_username(), self._main_ui.session.get_db_connection(),\
+                self.name,desc,amount,year)
+        except InputError as e:
+            print(e)
         self.load_plan()
         self.revenue_popup.destroy()
         self.handle_add_revenue()

@@ -34,4 +34,7 @@ class TestLogin(unittest.TestCase):
 
     def tearDown(self):
         self.db_connection.execute("DROP TABLE Users;")
+        self.db_connection.execute("DROP TABLE Cost;")
+        self.db_connection.execute("DROP TABLE Revenue;")
+        self.db_connection.execute("DROP TABLE Plan;")
         self.db_connection.commit()
