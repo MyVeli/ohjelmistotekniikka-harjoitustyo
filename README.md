@@ -9,6 +9,7 @@ Projektissa tehtävä sovellus toimii erilaisten investointien kannattavuuslaske
 * [määrittely dokumentti](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/dokumentaatio/maarittely.md)
 * [työaikakirjanpito](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/tyoaikakirjanpito/tyoaika.md)
 * [arkkitehtuuri](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+* [käyttöohje](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/dokumentaatio/kayttohje.md)
 
 ## Asennus
 1. Riippuvuudet asennetaan komennolla "poetry install"
