@@ -1,6 +1,8 @@
 """Holds InvestmentUi class, which is used for the main view of the system.
 """
 from tkinter import Tk,ttk, END
+import matplotlib.pyplot as pyplot
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from investment_plan_logic.plan_mgmt import get_costs, get_revenue, add_cost, add_revenue, InputError
 
 class InvestmentUi:
@@ -19,6 +21,7 @@ class InvestmentUi:
         self.revenue_popup = None
         self._cost_table = None
         self._revenue_table = None
+        self._graph = None
         self.load_plan()
         self.initialise_view()
 
@@ -33,14 +36,15 @@ class InvestmentUi:
         add_cost_button.grid(padx=20, pady=4, column=0, row=2)
         add_income_button = menu_button = ttk.Button(master=self._frame,text="Add income",\
             command=self.handle_add_revenue)
-        add_income_button.grid(padx=20, pady=4, column=0, row=1)
+        add_income_button.grid(padx=20, pady=4, column=0, row=3)
         menu_button = ttk.Button(master=self._frame,text="Back to main menu",\
             command=self.handle_to_main_menu)
-        menu_button.grid(padx=20, pady=4, column=0, row=0)
-        graph_label = ttk.Label(master=self._frame, text="Graph will be here once I figure out matplotlib with poetry.")
-        graph_label.grid(column=3, row=3)
+        menu_button.grid(padx=20, pady=4, column=0, row=4)
+        #graph_label = ttk.Label(master=self._frame, text="Graph will be here once I figure out matplotlib with poetry.")
+        #graph_label.grid(column=3, row=3)
         self.update_cost_table()
         self.update_revenue_table()
+        self.draw_graph()
     
     def update_cost_table(self):
         """updates the values in the cost table.
@@ -55,7 +59,7 @@ class InvestmentUi:
             self._cost_table.insert("", "end", values=(item[0],item[1],item[2]))
             total += item[1]
         self._cost_table.insert("","end", values=("total",total, "-"))
-        self._cost_table.grid(row=3,column=1)
+        self._cost_table.grid(row=2,column=1,rowspan=4,columnspan=4)
 
     def update_revenue_table(self):
         """Updates the values on the revenue table
@@ -70,7 +74,7 @@ class InvestmentUi:
             self._revenue_table.insert("", "end", values=(item[0],item[1],item[2]))
             total += item[1]
         self._revenue_table.insert("","end", values=("total",total, "-"))
-        self._revenue_table.grid(row=4,column=1)
+        self._revenue_table.grid(row=2,column=6,rowspan=4,columnspan=4)
 
     def load_plan(self):
         """Loads costs and revenue from the DB.
@@ -87,7 +91,7 @@ class InvestmentUi:
             message (string): message string to be shown.
         """
         self._message_label = ttk.Label(master=self._frame, text = message)
-        self._message_label.grid(row=0,column=1)
+        self._message_label.grid(row=0,column=1, columnspan=6)
 
     def pack(self):
         self._frame.pack()
@@ -96,6 +100,25 @@ class InvestmentUi:
         """Changes UI back to main menu.
         """
         self._main_ui.show_menu_view()
+
+    def draw_graph(self):
+        graph_costs = pyplot.Figure(figsize=(6,5), dpi=100)
+        graph_rev = pyplot.Figure(figsize=(6,5), dpi=100)
+        draw_costs = list()
+        draw_cost_years = list()
+        for cost in self.costs:
+            draw_costs.append(cost[1])
+            draw_cost_years.append(cost[2])
+        draw_rev = list()
+        draw_rev_years = list()
+        for rev in self.revenue:
+            draw_rev.append(rev[1])
+            draw_rev_years.append(rev[2])
+        graph_costs.add_subplot(111).plot(draw_cost_years,draw_costs)
+        #graph_rev.add_subplot(222).plot(draw_rev,draw_rev_years)
+        chart = FigureCanvasTkAgg(graph_costs, self._frame)
+        #chart = FigureCanvasTkAgg(graph_rev, self._frame)
+        chart.get_tk_widget().grid(column = 1, row = 7, columnspan = 8, rowspan = 6)
 
     def handle_add_cost(self):
         """Creates a popup for adding new costs.
@@ -143,6 +166,7 @@ class InvestmentUi:
         self.cost_popup.destroy()
         self.load_plan()
         self.update_cost_table()
+        self.draw_graph()
 
     def exit_revenue_popup(self):
         """Used for exiting revenue popup and loads new revenue to main view.
@@ -150,6 +174,7 @@ class InvestmentUi:
         self.revenue_popup.destroy()
         self.load_plan()
         self.update_revenue_table()
+        self.draw_graph()
 
     def handle_add_revenue(self):
         """Creates a popup for adding new revenue items to the plan.
