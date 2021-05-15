@@ -1,7 +1,7 @@
 """UI component used for registration and logging in."""
 from tkinter import ttk
-from user_mgmt.login import user_login as login, CredentialError
-from user_mgmt.register import register_user as register, UserNameError, PasswordError
+from data_service.login import CredentialError
+from data_service.register import UserNameError, PasswordError
 
 class LoginUi:
     def __init__(self,root,main_ui):
@@ -47,9 +47,8 @@ class LoginUi:
 
     def handle_login(self):
         try:
-            username = login(self._username_entry.get(),\
-                self._password_entry.get(),"investmentdb.db")
-            self.main_ui.session.set_username(username)
+            self.main_ui.session.login(self._username_entry.get(),\
+                self._password_entry.get())
             self.main_ui.show_menu_view()
         except CredentialError:
             self.show_error_message("Wrong username or password.")
@@ -58,9 +57,8 @@ class LoginUi:
 
     def handle_registration(self):
         try:
-            username = register(self._username_entry.get(),\
-                self._password_entry.get(),"investmentdb.db")
-            self.main_ui.session.set_username(username)
+            self.main_ui.session.register(self._username_entry.get(),\
+                self._password_entry.get())
             self.main_ui.show_menu_view()
         except UserNameError:
             self.show_error_message("Username already in use")

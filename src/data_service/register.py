@@ -1,8 +1,6 @@
 import hashlib
-import sqlite3
 
-def register_user(username,password,db_name):
-    db_connection = sqlite3.connect(db_name)
+def register_user(username,password,db_connection):
     try:
         if db_connection.execute("SELECT password FROM Users WHERE Username = ?",
                     [username]).fetchone() is not None:

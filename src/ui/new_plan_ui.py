@@ -1,5 +1,5 @@
 from tkinter import ttk
-from investment_plan_logic.plan_mgmt import create_plan
+from data_service.plan_mgmt import create_plan
 
 class NewPlan:
     """UI for creating a new plan to the system.

@@ -3,7 +3,8 @@
 from tkinter import Tk,ttk, END
 import matplotlib.pyplot as pyplot
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from investment_plan_logic.plan_mgmt import get_costs, get_revenue, add_cost, add_revenue, InputError
+from data_service.plan_mgmt import InputError
+from logic.investment_plan import InvestmentPlan
 
 class InvestmentUi:
     """Class for managing the main UI of the system, which is for investment plan management.
@@ -15,21 +16,18 @@ class InvestmentUi:
         self.name = plan_name
         self._frame = None
         self._message_label = None
-        self.costs = None
-        self.revenue = None
         self.cost_popup = None
         self.revenue_popup = None
         self._cost_table = None
         self._revenue_table = None
-        self._graph = None
-        self.load_plan()
+        self.investment_plan = InvestmentPlan(plan_name, self._main_ui.session)
+        self.investment_plan.load_plan()
         self.initialise_view()
 
     def initialise_view(self):
         """Initialises the view. Used by class constructor.
         """
         self._frame = ttk.Frame(master=self._root)
-        #self._frame.grid_columnconfigure(index=0,pad=10, minsize=50)
         self.show_message(f"Welcome to plan {self.name}. This view is a work in progress!")      
         add_cost_button = menu_button = ttk.Button(master=self._frame,text="Add costs",\
             command=self.handle_add_cost)
@@ -40,8 +38,6 @@ class InvestmentUi:
         menu_button = ttk.Button(master=self._frame,text="Back to main menu",\
             command=self.handle_to_main_menu)
         menu_button.grid(padx=20, pady=4, column=0, row=4)
-        #graph_label = ttk.Label(master=self._frame, text="Graph will be here once I figure out matplotlib with poetry.")
-        #graph_label.grid(column=3, row=3)
         self.update_cost_table()
         self.update_revenue_table()
         self.draw_graph()
@@ -49,13 +45,15 @@ class InvestmentUi:
     def update_cost_table(self):
         """updates the values in the cost table.
         """
+        table_label = ttk.Label(master=self._frame, text="costs")
+        table_label.grid(row=1, column=2)
         cols = ('Description','Amount','Year')
         self._cost_table = ttk.Treeview(master=self._frame, columns=cols, show='headings')
         for col in cols:
             self._cost_table.column(col,width=100)
             self._cost_table.heading(col,text=col)
         total = 0
-        for item in self.costs:
+        for item in self.investment_plan.get_costs():
             self._cost_table.insert("", "end", values=(item[0],item[1],item[2]))
             total += item[1]
         self._cost_table.insert("","end", values=("total",total, "-"))
@@ -64,25 +62,19 @@ class InvestmentUi:
     def update_revenue_table(self):
         """Updates the values on the revenue table
         """
+        table_label = ttk.Label(master=self._frame, text="revenue")
+        table_label.grid(row=1, column=7)
         cols = ('Description','Amount','Year')
         self._revenue_table = ttk.Treeview(master=self._frame, columns=cols, show='headings')
         total = 0
         for col in cols:
             self._revenue_table.column(col,width=100)
             self._revenue_table.heading(col,text=col)
-        for item in self.revenue:
+        for item in self.investment_plan.get_revenue():
             self._revenue_table.insert("", "end", values=(item[0],item[1],item[2]))
             total += item[1]
         self._revenue_table.insert("","end", values=("total",total, "-"))
         self._revenue_table.grid(row=2,column=6,rowspan=4,columnspan=4)
-
-    def load_plan(self):
-        """Loads costs and revenue from the DB.
-        """
-        self.costs = get_costs(self._main_ui.session.get_username(),
-            self._main_ui.session.get_db_connection(),self.name)
-        self.revenue = get_revenue(self._main_ui.session.get_username(),
-            self._main_ui.session.get_db_connection(),self.name)
 
     def show_message(self,message):
         """Shows a message on the top of the main view.
@@ -102,23 +94,28 @@ class InvestmentUi:
         self._main_ui.show_menu_view()
 
     def draw_graph(self):
-        graph_costs = pyplot.Figure(figsize=(6,5), dpi=100)
-        graph_rev = pyplot.Figure(figsize=(6,5), dpi=100)
+        graph = pyplot.Figure(figsize=(6,5), dpi=100)
         draw_costs = list()
         draw_cost_years = list()
-        for cost in self.costs:
+        for cost in self.investment_plan.get_yearly_costs():
             draw_costs.append(cost[1])
-            draw_cost_years.append(cost[2])
+            draw_cost_years.append(cost[0])
         draw_rev = list()
         draw_rev_years = list()
-        for rev in self.revenue:
+        for rev in self.investment_plan.get_yearly_revenue():
             draw_rev.append(rev[1])
-            draw_rev_years.append(rev[2])
-        graph_costs.add_subplot(111).plot(draw_cost_years,draw_costs)
-        #graph_rev.add_subplot(222).plot(draw_rev,draw_rev_years)
-        chart = FigureCanvasTkAgg(graph_costs, self._frame)
-        #chart = FigureCanvasTkAgg(graph_rev, self._frame)
-        chart.get_tk_widget().grid(column = 1, row = 7, columnspan = 8, rowspan = 6)
+            draw_rev_years.append(rev[0])
+        draw_profit = list()
+        draw_profit_years = list()
+        for profit in self.investment_plan.get_yearly_profit():
+            draw_profit.append(profit[1])
+            draw_profit_years.append(profit[0])
+            print(profit)
+        graph.add_subplot(111).plot(draw_profit_years, draw_profit,\
+            draw_cost_years, draw_costs, draw_rev_years, draw_rev)
+        graph.legend(["profit", "costs", "revenue"])
+        chart = FigureCanvasTkAgg(graph, self._frame)
+        chart.get_tk_widget().grid(column = 1, row = 8, columnspan = 8, rowspan = 6)
 
     def handle_add_cost(self):
         """Creates a popup for adding new costs.
@@ -133,10 +130,11 @@ class InvestmentUi:
         label = ttk.Label(self.cost_popup, width=20, text="Year")
         label.grid(row=i, column=2)
         i += 1
-        while i < len(self.costs)+1:
+        costs = self.investment_plan.get_costs()
+        while i < len(costs) + 1:
             for j in range(3):
                 entry = ttk.Entry(self.cost_popup, width=20)
-                entry.insert(END,str(self.costs[i-1][j]))
+                entry.insert(END,str(costs[i-1][j]))
                 entry.grid(row=i, column=j)
             i += 1
         label = ttk.Label(master=self.cost_popup, text="Add new cost line:")
@@ -164,7 +162,7 @@ class InvestmentUi:
         """used for exiting cost popup and loading new costs to main view.
         """
         self.cost_popup.destroy()
-        self.load_plan()
+        self.investment_plan.load_plan()
         self.update_cost_table()
         self.draw_graph()
 
@@ -172,7 +170,7 @@ class InvestmentUi:
         """Used for exiting revenue popup and loads new revenue to main view.
         """
         self.revenue_popup.destroy()
-        self.load_plan()
+        self.investment_plan.load_plan()
         self.update_revenue_table()
         self.draw_graph()
 
@@ -189,10 +187,11 @@ class InvestmentUi:
         label = ttk.Label(self.revenue_popup, width=20, text="Year")
         label.grid(row=i, column=2)
         i += 1
-        while i < len(self.revenue):
+        revenue = self.investment_plan.get_revenue()
+        while i < len(revenue)+1:
             for j in range(3):
                 entry = ttk.Entry(self.revenue_popup, width=20)
-                entry.insert(END,str(self.revenue[i][j]))
+                entry.insert(END,str(revenue[i-1][j]))
                 entry.grid(row=i, column=j)
             i += 1
         label = ttk.Label(master=self.revenue_popup, text="Add new revenue line:")
@@ -224,11 +223,10 @@ class InvestmentUi:
         amount = self.cost_popup.grid_slaves(row=index,column=1)[0].get()
         year = self.cost_popup.grid_slaves(row=index,column=2)[0].get()
         try:
-            add_cost(self._main_ui.session.get_username(), self._main_ui.session.get_db_connection(),\
-                self.name,desc,amount,year)
+            self.investment_plan.add_cost_item(desc, amount, year)
+            self.investment_plan.load_plan()
         except InputError as e:
             print(e)
-        self.load_plan()
         self.cost_popup.destroy()
         self.handle_add_cost()
 
@@ -239,11 +237,10 @@ class InvestmentUi:
         amount = self.revenue_popup.grid_slaves(row=index,column=1)[0].get()
         year = self.revenue_popup.grid_slaves(row=index,column=2)[0].get()
         try:
-            add_revenue(self._main_ui.session.get_username(), self._main_ui.session.get_db_connection(),\
-                self.name,desc,amount,year)
+            self.investment_plan.add_revenue_item(desc, amount, year)
+            self.investment_plan.load_plan()
         except InputError as e:
             print(e)
-        self.load_plan()
         self.revenue_popup.destroy()
         self.handle_add_revenue()
 

@@ -1,5 +1,5 @@
 from tkinter import ttk,Listbox,END,ACTIVE
-from investment_plan_logic.plan_mgmt import get_plans_by_user
+from data_service.plan_mgmt import get_plans_by_user
 
 class MainMenu:
     """UI class used for showing the mainmenu, 

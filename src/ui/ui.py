@@ -4,7 +4,7 @@ from ui.login_ui import LoginUi as login_ui
 from ui.menu_ui import MainMenu, LoadMenu
 from ui.new_plan_ui import NewPlan
 from ui.investment_ui import InvestmentUi
-from user_mgmt.session_info import SessionInfo
+from logic.session_info import SessionInfo
 
 class UI:
     """Main UI class which holds the root and changes between Uis.
