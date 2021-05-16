@@ -12,11 +12,12 @@ Projektissa tehtävä sovellus toimii erilaisten investointien kannattavuuslaske
 * [käyttöohje](https://github.com/MyVeli/ohjelmistotekniikka-harjoitustyo/blob/main/dokumentaatio/kayttohje.md)
 
 ## Asennus
-1. Riippuvuudet asennetaan komennolla "poetry install"
-2. Tämän jälkeen sovelluksen voi käynnistää komennolla "poetry invoke start"
+1. Riippuvuudet asennetaan komennolla `poetry install`
+2. Lisäksi matplotlib tarvitsee asentaa erikseen komennolla `pip3 install matplotlib==3.3.3`
+3. Tämän jälkeen sovelluksen voi käynnistää komennolla `poetry invoke start`
 
 ## Komentorivitoiminnot
-* Ohjelman voi käynnistää komennolla "poetry run invoke start"
-* Testit voi suorittaa komennolla "poetry run invoke test"
-* Testikattavuusraportin saa komennolla "poetry run invoke coverage-report" ja raportti muodostuu kansioon htmlcov.
+* Ohjelman voi käynnistää komennolla `poetry run invoke start`
+* Testit voi suorittaa komennolla `poetry run invoke test`
+* Testikattavuusraportin saa komennolla `poetry run invoke coverage-report` ja raportti muodostuu kansioon htmlcov.
 
