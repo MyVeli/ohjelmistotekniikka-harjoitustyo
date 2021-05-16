@@ -1,7 +1,7 @@
 import unittest
 from logic.investment_revenue import YearlyRevenue
 
-class TestRevenueMgmt(unittest.TestCase):
+class TestYearlyRevenue(unittest.TestCase):
     def setUp(self):
         self.year = "2020"
         revenue_item = ("first_item", "500.0", self.year)        

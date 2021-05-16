@@ -4,7 +4,7 @@ from db_mgmt import create_db
 from data_service.plan_service import create_plan, get_plans_by_user, get_revenue, \
     get_costs, add_revenue, add_cost
 
-class TestPlanMgmt(unittest.TestCase):
+class TestPlanService(unittest.TestCase):
     def setUp(self):        
         self.db_name = ":memory:"
         self.db_connection = create_db(self.db_name)

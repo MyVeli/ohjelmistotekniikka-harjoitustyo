@@ -4,7 +4,7 @@ from logic.session_info import SessionInfo
 from data_service.plan_service import create_plan
 from logic.investment_plan import InvestmentPlan
 
-class TestPlanMgmt(unittest.TestCase):
+class TestInvestmentPlan(unittest.TestCase):
     def setUp(self):        
         self.db_name = ":memory:"
         self.db_connection = create_db(self.db_name)

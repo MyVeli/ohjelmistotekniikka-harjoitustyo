@@ -2,7 +2,7 @@ import unittest
 from data_service.register import register_user, PasswordError, UserNameError
 from db_mgmt import create_db
 
-class TestLogin(unittest.TestCase):
+class TestRegister(unittest.TestCase):
     def setUp(self):
         self.db_name = ":memory:"
         self.db_connection = create_db(self.db_name)

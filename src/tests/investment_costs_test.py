@@ -1,7 +1,7 @@
 import unittest
 from logic.investment_costs import YearlyCosts
 
-class TestCostMgmt(unittest.TestCase):
+class TestYearlyCosts(unittest.TestCase):
     def setUp(self):
         self.year = "2020"
         cost_item = ("first_item", "500.0", self.year)        

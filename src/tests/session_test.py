@@ -2,7 +2,7 @@ import unittest
 from logic.session_info import SessionInfo
 from db_mgmt import create_db
 
-class TestSession(unittest.TestCase):
+class TestSessionInfo(unittest.TestCase):
     def setUp(self):        
         self.db_name = ":memory:"
         self.db_connection = create_db(self.db_name)
