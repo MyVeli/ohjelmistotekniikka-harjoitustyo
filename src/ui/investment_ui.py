@@ -28,7 +28,7 @@ class InvestmentUi:
         """Initialises the view. Used by class constructor.
         """
         self._frame = ttk.Frame(master=self._root)
-        self.show_message(f"Welcome to plan {self.name}. This view is a work in progress!")      
+        self.show_message(f"You are editing plan {self.name}.")      
         add_cost_button = menu_button = ttk.Button(master=self._frame,text="Add costs",\
             command=self.handle_add_cost)
         add_cost_button.grid(padx=20, pady=4, column=0, row=2)
