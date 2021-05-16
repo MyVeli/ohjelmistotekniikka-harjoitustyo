@@ -30,6 +30,8 @@ Sovelluksessa on vain yksi käyttäjärooli. Käyttäjät ja käyttäjien tiedot
 * Suunnitelmasivulta voi poistua ja suunnitelma, sekä kaikki siihen liittyvä tieto tallentuvat tietokantaan
 
 ## Jatkokehitysideoita
+* Laajemmat mahdollisuudet muokata tai poistaa kuluja, tuloja ja suunnitelmia
+* Monipuolisten kannattavuuslukujen laskenta
 * Käyttäjätunnuksien jakaminen kahteen luokkaan, joista toisella on vain oikeus tutkia suunnitelmia
 * Skenaarioiden luominen suunnitelmille ja niiden vertailu ja piirtäminen graafeihin samassa näkymässä
 * Kuva ja taulukko export suunnitelmista
