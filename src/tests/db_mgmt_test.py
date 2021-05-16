@@ -1,10 +1,9 @@
 import unittest
-import sqlite3
 from db_mgmt import create_db
 
 class TestCreateDB(unittest.TestCase):
     def setUp(self):
-        self.db_connection = create_db("dbcreatetest.db")
+        self.db_connection = create_db(":memory:")
     
     def test_userInsert(self):
         self.db_connection.execute("INSERT INTO Users (username, password) VALUES ('user','password');")

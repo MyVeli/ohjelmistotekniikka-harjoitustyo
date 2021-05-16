@@ -21,8 +21,8 @@ class SessionInfo:
 
         try:
             self.__username__ = user_login(username, password, self.__db_connection__)
-        except Exception as e:
-            raise e
+        except Exception as _e:
+            raise _e
 
     def register(self, username, password):
         """used for registering new user and logging them in
@@ -37,8 +37,8 @@ class SessionInfo:
         """
         try:
             self.__username__ = register_user(username, password, self.__db_connection__)
-        except Exception as e:
-            raise e
+        except Exception as _e:
+            raise _e
 
     def get_db_connection(self):
         """returns sqlite3 database connection.
@@ -63,11 +63,3 @@ class SessionInfo:
             string: username
         """
         return self.__username__
-
-    #def set_username(self,username):
-        """Used for setting the logged in users username.
-
-        Args:
-            username (string): username
-        """
-        #self.__username__ = username

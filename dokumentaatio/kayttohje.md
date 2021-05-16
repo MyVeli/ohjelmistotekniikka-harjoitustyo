@@ -1,8 +1,9 @@
 # Käyttöohje
 
 ## Asennus
-* Riippuvuudet asennetaan komennolla "poetry install"
-* Tämän jälkeen sovelluksen voi käynnistää komennolla "poetry invoke start"
+* Riippuvuudet asennetaan komennolla `poetry install`
+* Lisäksi matplotlib tarvitsee asentaa erikseen komennolla `pip3 install matplotlib==3.3.3`
+* Tämän jälkeen sovelluksen voi käynnistää komennolla `poetry invoke start`
 
 ## Rekisteröinti ja kirjautuminen
 Sovelluksen suorituksessa ensimmäisen aukeaa näkymä rekisteröinnille ja kirjautumiselle. Sovellus pyytää käyttäjältä käyttäjänimeä ja salasanaa, minkä jälkeen käyttäjä voi joko kirjautua sisään antamillaa tunnuksilla tai rekisteröidä uudet tunnukset, riippuen siitä kumpaa nappia käyttäjä painaa.
@@ -17,7 +18,7 @@ Jos käyttäjä haluaa ladata suunnitelman, hän näkee listan suunnitelmista. S
 ## Suunnitelmat
 Sivulla on 3 nappia. Yhdellä näistä lisätään kustannuseriä, toisella tuloja ja kolmannella pääsee takaisin valikkoon.
 
-Keskellä näkymää on kaksi taulua, joissa on suunnitelmalle lisätyt kustannus- ja tuloerät. Näiden oikealla puolella tulee olemaan lukujen perusteilla laskettuja kuvaajia.
+Keskellä näkymää on kaksi taulua, joissa on suunnitelmalle lisätyt kustannus- ja tuloerät. Näiden alapuolella on graafi, jossa kustannukset, tulot ja kannattavuus näkyvät ajan funktiona.
 
 ### Kulujen lisääminen
 Painamalla Add costs -nappia, järjestelmä avaa popupin, jossa näkee nykyiset kuluerät ja voi lisätä uusia. Tämä tapahtuu lisäämällä kenttiin kuvaus kuluerästä, sen suuruus ja sen vuosi. Lisätyt kuluerät tallentuvat automaattisesti ja näkyvät päänäkymässä.

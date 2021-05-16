@@ -3,7 +3,7 @@
 from tkinter import Tk,ttk, END
 import matplotlib.pyplot as pyplot
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from data_service.plan_mgmt import InputError
+from data_service.plan_service import InputError
 from logic.investment_plan import InvestmentPlan
 
 class InvestmentUi:
@@ -110,7 +110,6 @@ class InvestmentUi:
         for profit in self.investment_plan.get_yearly_profit():
             draw_profit.append(profit[1])
             draw_profit_years.append(profit[0])
-            print(profit)
         graph.add_subplot(111).plot(draw_profit_years, draw_profit,\
             draw_cost_years, draw_costs, draw_rev_years, draw_rev)
         graph.legend(["profit", "costs", "revenue"])
@@ -225,8 +224,8 @@ class InvestmentUi:
         try:
             self.investment_plan.add_cost_item(desc, amount, year)
             self.investment_plan.load_plan()
-        except InputError as e:
-            print(e)
+        except InputError as _e:
+            print(_e)
         self.cost_popup.destroy()
         self.handle_add_cost()
 
@@ -239,8 +238,8 @@ class InvestmentUi:
         try:
             self.investment_plan.add_revenue_item(desc, amount, year)
             self.investment_plan.load_plan()
-        except InputError as e:
-            print(e)
+        except InputError as _e:
+            print(_e)
         self.revenue_popup.destroy()
         self.handle_add_revenue()
 

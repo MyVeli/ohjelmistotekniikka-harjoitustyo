@@ -50,21 +50,6 @@ def get_costs(username,db_connection,name):
         "ORDER BY year ASC, description DESC"
     return db_connection.execute(query,{"name":name,"username":username}).fetchall()
 
-def get_cost_types(username,db_connection,name):
-    """used to get all cost types for a plan
-
-    Args:
-        username (string): logged in username
-        db_connection (string): sqlite 3 connection
-        name (string): name of plan
-
-    Returns:
-        list of cost names for a plan
-    """
-    query = "SELECT description FROM Cost WHERE "+\
-        "plan_id=(SELECT Plan.plan_id FROM Plan WHERE name=:name AND username=:username)"
-    return db_connection.execute(query,{"name":name,"username":username}).fetchall()
-
 def get_revenue(username,db_connection,name):
     """used to get all revenue items for a certain plan
 
@@ -84,21 +69,6 @@ def get_revenue(username,db_connection,name):
     query = "SELECT description, amount, year FROM Revenue WHERE "+\
         "plan_id=(SELECT Plan.plan_id FROM Plan WHERE name=:name AND username=:username) "+\
         "ORDER BY year ASC, description DESC"
-    return db_connection.execute(query,{"name":name,"username":username}).fetchall()
-
-def get_revenue_types(username,db_connection,name):
-    """returns revenue types found for a plan
-
-    Args:
-        username (string): logged in username
-        db_connection (string): sqlite 3 connection
-        name (string): name of plan
-
-    Returns:
-        list of cost names
-    """
-    query = "SELECT description FROM Revenue WHERE "+\
-        "plan_id=(SELECT Plan.plan_id FROM Plan WHERE name=:name AND username=:username)"
     return db_connection.execute(query,{"name":name,"username":username}).fetchall()
 
 def add_cost(username,db_connection,name,description,amount,year):

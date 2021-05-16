@@ -1,10 +1,10 @@
 # Vaatimusmäärittely
 
 ## Sovelluksen tarkoitus
-Sovellus on investointien kannattavuuslaskenta sovellus. Sen avulla voi laskea takaisinmaksuaikoja ja investoinnin kannattavuutta erilaisille projekteille.
+Sovellus on investointien kannattavuuslaskenta sovellus. Sen avulla voi pitää kirjaa kuluista, sekä piirtää niiden ja kannattavuuden kehityksestä graafin.
 
 ## Käyttäjät
-Sovelluksessa on vain yksi käyttäjärooli. Myöhemmin sovellukseen saatetaan lisätä erikseen roolit investointisuunnitelmien tekijälle ja katsojalle, joka voi vain tutkai luotuja suunnitelmia.
+Sovelluksessa on vain yksi käyttäjärooli. Käyttäjät ja käyttäjien tiedot on suojattu salasanalla.
 
 ## Perusversion toiminnallisuudet
 ### Kirjautuminen ja rekisteröinti
@@ -15,20 +15,19 @@ Sovelluksessa on vain yksi käyttäjärooli. Myöhemmin sovellukseen saatetaan l
 * Kirjautumisen yhteydessä järjestelmä ilmoittaa mikäli tunnus puuttuu
 
 ### Kirjautumisen jälkeen
-* tehty v5: Käyttäjä näkee listan tehdyistä suunnitelmista
-* tehty v5: Käyttäjä voi luoda uuden suunnitelman
-* Käyttäjä voi poistaa suunnitelman
-* tehty v5: Käyttäjä voi ladata suunnitelman
+* Käyttäjä näkee listan tehdyistä suunnitelmista
+* Käyttäjä voi luoda uuden suunnitelman
+* Käyttäjä voi ladata suunnitelman
 
 ### Suunnitelman luominen
-* tehty v5: Käyttäjä valitsee suunnitelmalle uniikin nimen ja luo suunnitelman
-* tehty v5: Suunnitelman luomisen jälkeen käyttäjä siirtyy tyhjään suunnitelmaan
+* Käyttäjä valitsee suunnitelmalle uniikin nimen ja luo suunnitelman
+* Suunnitelman luomisen jälkeen käyttäjä siirtyy tyhjään suunnitelmaan
 
 ### Suunnitelman muokkaaminen
-* osittain tehty v6: Käyttäjä voi lisätä, poistaa tai muokata suunnitelman kuluja ja tuloja
-* osittain tehty v6: Kuluja ja liikevaihtoa voi olla erilaisista nimetyistä lähteistä ja järjestelmä tallentaa ne erikseen
-* osittain tehty v6: Järjestelmä piirtää liikevaihdon, kulujen ja kannattavuuden kehittymisestä graafin ja näyttää arvot myös numeerisina
-* osittain tehty v6: Suunnitelman voi tallentaa ja siirtyä takaisin valikkoon, jossa on lista suunnitelmista
+* Käyttäjä voi lisätä suunnitelman kuluja ja tuloja
+* Kuluja ja liikevaihtoa voi olla erilaisista nimetyistä lähteistä ja järjestelmä tallentaa ne erikseen
+* Järjestelmä piirtää liikevaihdon, kulujen ja kannattavuuden kehittymisestä graafin
+* Suunnitelmasivulta voi poistua ja suunnitelma, sekä kaikki siihen liittyvä tieto tallentuvat tietokantaan
 
 ## Jatkokehitysideoita
 * Käyttäjätunnuksien jakaminen kahteen luokkaan, joista toisella on vain oikeus tutkia suunnitelmia

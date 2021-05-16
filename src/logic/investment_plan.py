@@ -1,4 +1,4 @@
-from data_service.plan_mgmt import *
+from data_service.plan_service import get_costs, get_revenue, add_cost, add_revenue, InputError
 from logic.investment_costs import YearlyCosts
 from logic.investment_revenue import YearlyRevenue
 
@@ -29,7 +29,7 @@ class InvestmentPlan:
             self.session.get_db_connection(),self.plan_name)
         revenue = get_revenue(self.session.get_username(),
             self.session.get_db_connection(),self.plan_name)
-        
+
         for cost in costs:
             if cost[2] in self.costs:
                 self.costs[cost[2]].add_cost(cost)
@@ -48,7 +48,7 @@ class InvestmentPlan:
                 self.profits[rev[2]] += float(rev[1])
             else:
                 self.profits[rev[2]] = float(rev[1])
-        
+
     def get_yearly_profit(self):
         """Get yearly profits for the plan.
 
@@ -115,6 +115,10 @@ class InvestmentPlan:
             amount (string, int or float): amount of money
             year (string or int): year for the cost
         """
+        try:
+            self._verify_input(desc, amount, year)
+        except InputError as _e:
+            raise _e
         add_cost(self.session.get_username(), self.session.get_db_connection(),\
                 self.plan_name, desc, amount, year)
         if year in self.costs:
@@ -130,9 +134,24 @@ class InvestmentPlan:
             amount (string, int or float): amount of money
             year (string or int): year for the revenue
         """
+        try:
+            self._verify_input(desc, amount, year)
+        except InputError as _e:
+            raise _e
         add_revenue(self.session.get_username(), self.session.get_db_connection(),\
                 self.plan_name, desc, amount, year)
         if year in self.revenue:
             self.revenue[year].add_revenue((desc, amount, year))
         else:
-            self.revenue[year] = YearlyRevenue((desc, amount, year))        
+            self.revenue[year] = YearlyRevenue((desc, amount, year))
+
+    def _verify_input(self, desc, amount, year):
+        if desc is None or len(desc) < 1 or len(desc) > 25:
+            raise InputError("Please keep description between 1 and 25 characters.")
+        try:
+            amount = float(amount)
+            year = float(year)
+        except ValueError:
+            raise InputError("Please give year and amount as number")
+        if year < 0 or amount < 0:
+            raise InputError("Please only use positive numbers with amount and year")

@@ -24,4 +24,10 @@
 * investointikäyttöliittymä ja taustapalvelut 6h
 * testit, refaktorointi, virhetarkastelun lisääminen 2h
 
-### Yhteensä: 35h
+### Loppupalautus:
+* koodin refaktorointi käyttämään kolmea tasoa (ui, logiikka, data) 9h
+* graafien lisääminen ja investointikäyttöliittymän viimeistely 5h
+* dokumentaatio 6h
+* testejä ja virhetarkastelun lisäämistä 2h
+
+### Yhteensä: 57h

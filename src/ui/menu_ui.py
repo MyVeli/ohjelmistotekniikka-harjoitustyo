@@ -1,5 +1,6 @@
 from tkinter import ttk,Listbox,END,ACTIVE
-from data_service.plan_mgmt import get_plans_by_user
+from data_service.plan_service import InputError
+from logic.plan_mgmt import load_plans
 
 class MainMenu:
     """UI class used for showing the mainmenu, 
@@ -89,6 +90,9 @@ class LoadMenu:
                             command=self.handle_load_plan)
         load_plan_button.grid(padx=6, pady=4)
 
+        menu_button = ttk.Button(master=self._frame,text="Back",command=self._main_ui.show_menu_view)
+        menu_button.grid(padx=6, pady=4)
+
     def pack(self):
         self._frame.pack()
 
@@ -107,7 +111,8 @@ class LoadMenu:
     def handle_load_plan(self):
         """Shows the investment view with the chosen plan.
         """
-        self._main_ui.show_investment_view(self._list.get(ACTIVE))
+        if self._list.get(ACTIVE) is not None and len(self._list.get(ACTIVE)) > 0:
+            self._main_ui.show_investment_view(self._list.get(ACTIVE))
 
     def get_plans(self):
         """returns all the plans for the user.
@@ -115,5 +120,4 @@ class LoadMenu:
         Returns:
             list of strings: plan names in a list 
         """
-        return get_plans_by_user(self._main_ui.session.get_username(),
-        self._main_ui.session.get_db_connection())
+        return load_plans(self._main_ui.session)
